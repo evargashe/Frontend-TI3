@@ -50,7 +50,7 @@ function HomeLoginAdmin(props) {
         }
         try {
             // Send login request to server
-            const response = await fetch('http://localhost:4000/api/admin/loginAdmin', {
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/loginAdmin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function HomeLoginAdmin(props) {
                 });
                 limpiarFormulario();
                 localStorage.setItem('logoutEventAdmin', Date.now().toString());
-                localStorage.setItem('adminID', adminId);
+                localStorage.setItem('adminId', adminId);
                 setAdminId(adminId);
                 console.log(adminId);
                 navigate('/admin/home');

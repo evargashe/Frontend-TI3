@@ -18,8 +18,8 @@ const TableEquiposSolicitados = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const responseBook = await axios.get("http://localhost:4000/api/admin/getReservation/books");
-                const responseEquipment = await axios.get("http://localhost:4000/api/admin/getReservation/equipments");
+                const responseBook = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/books`);
+                const responseEquipment = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/equipments`);
                 const combinedReservas = [...responseBook.data, ...responseEquipment.data];
 
                 // Ordenar por la propiedad 'createdAt'
@@ -38,7 +38,7 @@ const TableEquiposSolicitados = () => {
                     return timeA - timeB;
                 });
                 const reservasWithNames = await Promise.all(combinedReservas.map(async (item) => {
-                    const studentResponse = await axios.get(`http://localhost:4000/api/admin/getStudent/${item.userId}`);
+                    const studentResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getStudent/${item.userId}`);
                     const studentName = studentResponse.data.firstname + ' ' + studentResponse.data.lastname;
                     return { ...item, studentName };
                 }));
@@ -64,7 +64,7 @@ const TableEquiposSolicitados = () => {
                     const scheduledTime = new Date(item.deleteScheduled);
                     if (now > scheduledTime) {
                         // Ha pasado una hora, eliminar la reserva
-                        await axios.delete(`http://localhost:4000/api/admin/deleteReservationById/${item.type}/${item._id}`);
+                        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/deleteReservationById/${item.type}/${item._id}`);
                         //window.location.reload();
                     }
                 }
@@ -118,10 +118,10 @@ const TableEquiposSolicitados = () => {
         try {
             // Corrige el tipo de categoría aquí
             const correctedType = type === 'book' ? 'books' : 'equipments';
-            const response = await axios.get(`http://localhost:4000/api/admin/getDetails/${correctedType}/${itemId}`);
+            const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getDetails/${correctedType}/${itemId}`);
             setSelectedItem(response.data);
             setShowDetailsModal(true);
-            setSelectedItemDetails(itemId); // actualuzar el id del equipo o libro
+            setSelectedItemDetails(itemId); // actualzar el id del equipo o libro
             setIdReserva(reservationId); // Actualizar el id de la reserva 
             setTypeItem(type); //actualizar el type del equipo o libro
             setStateReservation(estadoReserva); //actualizar el estado de la reserva

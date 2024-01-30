@@ -24,7 +24,7 @@ const VerEquipos = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/admin/get/equipments");
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/equipments`);
                 setEquipos(response.data);
             } catch (error) {
                 console.error('Error al obtener los equipos:', error);
@@ -72,7 +72,7 @@ const VerEquipos = () => {
     };
 
     const handleEditFormSave = (updatedFormData) => {
-        axios.put(`http://localhost:4000/api/admin/update/equipments/${selectedEquipmentId}`, updatedFormData)
+        axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update/equipments/${selectedEquipmentId}`, updatedFormData)
             .then((response) => {
                 const updatedEquipos = equipos.map(equipment => (equipment._id === selectedEquipmentId ? response.data : equipment));
                 setEquipos(updatedEquipos);
@@ -99,7 +99,7 @@ const VerEquipos = () => {
             cancelButtonText: 'Cancelar',
         });
         if (confirmAction.isConfirmed) {
-            axios.delete(`http://localhost:4000/api/admin/delete/equipments/${itemId}`)
+            axios.delete(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/delete/equipments/${itemId}`)
                 .then((response) => {
                     const updatedEquipos = equipos.filter(equipment => equipment._id !== itemId);
                     toast.success("¡Equipo eliminado con éxito!", {

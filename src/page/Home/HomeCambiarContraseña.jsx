@@ -46,7 +46,7 @@ function ResetPasswordPage() {
         }
         // Enviar solicitud al backend para cambiar la contraseña
         try {
-            const response = await axios.post(`http://localhost:4000/api/students/reset-password/${token}`, {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/reset-password/${token}`, {
                 password,
             });
 

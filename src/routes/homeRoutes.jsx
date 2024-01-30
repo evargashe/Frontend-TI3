@@ -40,6 +40,7 @@ function HomeRoutes() {
     }
   }, []);
 
+
   return (
     <div>
       {!hideHeaderInRegistroAdmin && <HeaderHome />}

@@ -21,8 +21,8 @@ const TableDevolucionDeEquipos = () => {
 
     const fetchData = async () => {
         try {
-            const responseBook = await axios.get("http://localhost:4000/api/admin/getReservation/books");
-            const responseEquipment = await axios.get("http://localhost:4000/api/admin/getReservation/equipments");
+            const responseBook = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/books`);
+            const responseEquipment = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/equipments`);
             const combinedReservas = [...responseBook.data, ...responseEquipment.data];
 
             // Ordenar por la propiedad 'createdAt'
@@ -41,10 +41,10 @@ const TableDevolucionDeEquipos = () => {
                 return timeA - timeB;
             });
             const reservasWithNames = await Promise.all(combinedReservas.map(async (item) => {
-                const studentResponse = await axios.get(`http://localhost:4000/api/admin/getStudent/${item.userId}`);
+                const studentResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getStudent/${item.userId}`);
                 const studentName = studentResponse.data.firstname + ' ' + studentResponse.data.lastname;
                 const correctedType = item.type === 'book' ? 'books' : 'equipments';
-                const categoryResponse = await axios.get(`http://localhost:4000/api/admin/get/${correctedType}/${item.type === 'book' ? item.bookId : item.equipmentId}`);
+                const categoryResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/${correctedType}/${item.type === 'book' ? item.bookId : item.equipmentId}`);
                 const categoryName = item.type === 'book' ? categoryResponse.data.title : categoryResponse.data.name;
                 return { ...item, studentName, categoryName};
             }));
@@ -65,7 +65,7 @@ const TableDevolucionDeEquipos = () => {
 
     const handleUpdateStateIfAmountIsZero = async (type, id) => {
         try {
-            const response = await axios.put(`http://localhost:4000/api/admin/update-state-to-available-if-zero/${type}/${id}`);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update-state-to-available-if-zero/${type}/${id}`);
         } catch (error) {
             console.error('Error al actualizar el estado:', error.response?.data?.error || 'Error desconocido');
         }
@@ -88,7 +88,7 @@ const TableDevolucionDeEquipos = () => {
             if (confirmAction.isConfirmed) {
                 // Realizar la solicitud PUT al nuevo endpoint para actualizar currentTime
                 await handleUpdateStateIfAmountIsZero(type, itemId);
-                await axios.put(`http://localhost:4000/api/admin/updateCurrentTime/${type}/${reservationId}/${itemId}`);
+                await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/updateCurrentTime/${type}/${reservationId}/${itemId}`);
                 toast.success(`Se devolvio correctamente el ${typeItem}`, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                     autoClose: 1000,
@@ -198,7 +198,7 @@ const TableDevolucionDeEquipos = () => {
                     <tbody>
                         {currentData.filter(item => item.state == 'ACEPTADO').length === 0 ? (
                             <tr>
-                                <td colSpan="7" className="text-center py-4 text-gray-500">No existen reservas por el momento.</td>
+                                <td colSpan="8" className="text-center py-4 text-gray-500">No existen reservas por el momento.</td>
                             </tr>
                         ) : (
                             currentData.map((item, index) => (

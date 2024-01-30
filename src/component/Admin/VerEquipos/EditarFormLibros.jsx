@@ -20,7 +20,7 @@ const EditForm = ({ bookId, onClose, onSave }) => {
 
   useEffect(() => {
     console.log('Obteniendo categorías...');
-    axios.get("http://localhost:4000/api/admin/getCategory")
+    axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getCategory`)
       .then(response => {
         console.log('Categorías obtenidas:', response.data);
         setCategoriasLibros(response.data);
@@ -30,7 +30,7 @@ const EditForm = ({ bookId, onClose, onSave }) => {
 
   useEffect(() => {
     console.log('Valor de bookId:', bookId);
-    axios.get(`http://localhost:4000/api/admin/get/books/${bookId}`)
+    axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/books/${bookId}`)
       .then(response => {
         console.log('Datos del libro obtenidos:', response.data);
         setFormulario(response.data);
@@ -46,7 +46,7 @@ const EditForm = ({ bookId, onClose, onSave }) => {
 
   const handleSubmitLibros = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:4000/api/admin/update/books/${bookId}`, formulario)
+    axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update/books/${bookId}`, formulario)
       .then(response => {
         onSave(response.data);
         toast.success("¡Libro actualizado con éxito!", {

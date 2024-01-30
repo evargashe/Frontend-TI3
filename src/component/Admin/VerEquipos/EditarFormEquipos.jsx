@@ -13,7 +13,7 @@ const EditForm = ({ equipmentId, onClose, onSave }) => {
 
     useEffect(() => {
         console.log('Valor de equipmentId:', equipmentId);
-        axios.get(`http://localhost:4000/api/admin/get/equipments/${equipmentId}`)
+        axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/equipments/${equipmentId}`)
             .then(response => {
                 console.log('Datos del equipo obtenidos:', response.data);
                 setNuevoFormulario(response.data);
@@ -33,7 +33,7 @@ const EditForm = ({ equipmentId, onClose, onSave }) => {
 
     const handleSubmitEquipos = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/api/admin/update/equipments/${equipmentId}`, nuevoFormulario)
+        axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update/equipments/${equipmentId}`, nuevoFormulario)
             .then(response => {
                 onSave(response.data);
                 toast.success("¡Equipo actualizado con éxito!", {

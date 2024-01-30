@@ -53,7 +53,7 @@
 
 
             try {
-                const response = await axios.post('http://localhost:4000/api/students/reset-password', {
+                const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/reset-password`, {
                     email: formData.email,
                 });
 

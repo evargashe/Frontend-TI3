@@ -11,7 +11,7 @@ const LibrosTable = () => {
     useEffect(() => {
         const fetchLibros = async () => {
             try {
-                const response = await fetch("http://localhost:4000/api/students/view-equipments/books");
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/view-equipments/books`);
                 const data = await response.json();
                 setLibros(data);
             } catch (error) {

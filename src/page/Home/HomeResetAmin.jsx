@@ -52,7 +52,7 @@ function ResetPassword() {
         }
 
         try {
-            const response = await axios.post('http://localhost:4000/api/admin/reset-password-admin', {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/reset-password-admin`, {
                 email: formData.email,
             });
 

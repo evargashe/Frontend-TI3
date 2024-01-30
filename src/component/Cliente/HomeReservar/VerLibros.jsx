@@ -100,7 +100,7 @@ const VerLibros = () => {
 
         try {
             // Realizar la solicitud POST a la API para crear la reserva
-            const response = await fetch("http://localhost:4000/api/students/reservations/books", {
+            const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/reservations/books`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -136,7 +136,7 @@ const VerLibros = () => {
     useEffect(() => {
         const fetchLibros = async () => {
             try {
-                const response = await fetch("http://localhost:4000/api/students/view-equipments/books");
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/view-equipments/books`);
                 const data = await response.json();
                 const filteredLibros = data.filter((libro) => libro.amount > 0);
                 setLibros(filteredLibros);

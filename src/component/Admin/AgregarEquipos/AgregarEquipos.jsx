@@ -41,7 +41,7 @@ const AgregarEquipos = () => {
         }
         else {
             try {
-                const response = await axios.post("http://localhost:4000/api/admin/create/equipments", nuevoFormulario);
+                const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/create/equipments`, nuevoFormulario);
 
                 toast.success("¡Equipo agregado con éxito!", {
                     position: toast.POSITION.BOTTOM_RIGHT,

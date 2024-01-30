@@ -40,7 +40,7 @@ function CrearAdmin(props) {
         }
 
         try {
-            await axios.post('http://localhost:4000/api/admin/generate-token', { email: formData.email });
+            await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/generate-token`, { email: formData.email });
             toast.success('Correo con enlace enviado exitosamente', {
                 position: toast.POSITION.BOTTOM_RIGHT,
                 autoClose: 2000,

@@ -25,7 +25,7 @@ const ModalEditar = ({ item, onClose  }) => {
         e.preventDefault();
     
         try {
-            const response = await axios.put(`http://localhost:4000/api/admin/updateReservationDevolution/${item.type}/${item._id}`, {
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/updateReservationDevolution/${item.type}/${item._id}`, {
                 returnDate: formData.returnDate
             });
             toast.success(`Libro actualizado exitosamente!`, {
@@ -55,7 +55,7 @@ const ModalEditar = ({ item, onClose  }) => {
             console.log(item._id);
             console.log(formData.reservationDateTime);
             console.log(item.endHour);
-            const response = await axios.put(`http://localhost:4000/api/admin/updateReservationDevolution/${item.type}/${item._id}`, {
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/updateReservationDevolution/${item.type}/${item._id}`, {
                 reservationDateTime: formData.reservationDateTime,
                 endHour: formData.endHour
             });

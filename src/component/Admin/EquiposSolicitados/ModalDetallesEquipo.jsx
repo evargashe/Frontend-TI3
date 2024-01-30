@@ -13,7 +13,7 @@ const DetallesModal = ({ details, type, idReservation, stateReservation, id, onC
     const [state, setState] = useState('');
     useEffect(() => {
         const correctedType = type === 'book' ? 'books' : 'equipments';
-        axios.get(`http://localhost:4000/api/admin/get/${correctedType}/${details}`)
+        axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/${correctedType}/${details}`)
             .then(response => {
                 setFormulario(response.data);
             })
@@ -33,30 +33,26 @@ const DetallesModal = ({ details, type, idReservation, stateReservation, id, onC
             const correctedType = type === 'book' ? 'books' : 'equipments';
             const correct = type === 'book' ? 'libro' : 'equipo';
 
-            const response = await axios.post(`http://localhost:4000/api/admin/update-reservation/${correctedType}/${idReservation}`, { reservationId: idReservation, newStatus: state });
-            // Verificar si el amount es cero antes de intentar actualizar el estado del equipo
-            if (formulario.amount === 1) {
-                await axios.put(`http://localhost:4000/api/admin/update-state-item/${type}/${id}`);
-                onClose(); // Cierra el modal después de la actualización
-                // Mostrar toast de éxito solo si la solicitud se completó sin errores
-                toast.success(`Estado de la reserva y el ${correct} actualizado con éxito`, {
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                    autoClose: 1000, // Duración en milisegundos
-                });
-            }
-            else {
-                onClose(); // Cierra el modal después de la actualización
-                // Mostrar toast de éxito solo si la solicitud se completó sin errores
-                toast.success('Estado de la reserva actualizado con éxito', {
-                    position: toast.POSITION.BOTTOM_RIGHT,
-                    autoClose: 1000, // Duración en milisegundos
-                });
-            }
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update-reservation/${correctedType}/${idReservation}`, { reservationId: idReservation, newStatus: state });
+            // Mostrar toast de éxito solo si la solicitud se completó sin errores
+            toast.success('Estado de la reserva actualizado con éxito', {
+                position: toast.POSITION.BOTTOM_RIGHT,
+                autoClose: 1000, // Duración en milisegundos
+            });
+            onClose();
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
+            await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update-state-item/${type}/${id}`);
+
         } catch (error) {
-            console.error('Error al actualizar el estado de la reserva:', error.response?.data?.msg || error.message || 'Error desconocido');
+            if (error.response.status === 400) {
+                // Manejar el error específico de código de estado 400
+                console.error('Error 400:', error.response.data); // Muestra el mensaje de error proporcionado por el servidor
+            } else {
+                // Manejar otros errores
+                console.error('Error al actualizar el estado de la reserva:', error.response?.data?.msg || error.message || 'Error desconocido');
+            }
         }
     };
     return (

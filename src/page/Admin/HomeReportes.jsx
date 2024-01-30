@@ -11,7 +11,7 @@ const TableReporte = () => {
     const [historyData, setHistoryData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
-    
+
 
     const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
@@ -21,13 +21,13 @@ const TableReporte = () => {
 
     useEffect(() => {
         // Llamar al endpoint del servidor para obtener el historial de usuarios
-        axios.get('http://localhost:4000/api/admin/user-history')
+        axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/user-history`)
             .then(response => {
                 setHistoryData(response.data);
                 // Obtener detalles de cada elemento en el historial y almacenarlos en el estado
                 response.data.forEach(item => {
                     const correctType = item.itemType == 'Book' ? 'books' : 'equipments'
-                    axios.get(`http://localhost:4000/api/admin/getDetails/${correctType}/${item.itemId}`)
+                    axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getDetails/${correctType}/${item.itemId}`)
                         .then(detailsResponse => {
                             setItemDetails(prevState => ({
                                 ...prevState,
@@ -41,12 +41,12 @@ const TableReporte = () => {
                         });
                     // Obtener detalles del estudiante
                     if (item.userId) {
-                        axios.get(`http://localhost:4000/api/admin/getStudent/${item.userId}`)
+                        axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getStudent/${item.userId}`)
                             .then(studentResponse => {
                                 setItemDetails(prevState => ({
                                     ...prevState,
                                     [item.userId]: {
-                                        userName: studentResponse.data.firstname +' '+ studentResponse.data.lastname,
+                                        userName: studentResponse.data.firstname + ' ' + studentResponse.data.lastname,
                                     },
                                 }));
                             })
@@ -133,9 +133,7 @@ const TableReporte = () => {
                         {currentData.length === 0 ? (
                             // Show a message when no matches are found
                             <tr>
-                                <td colSpan="5" className="text-center text-gray-600 my-4">
-                                    No se encontraron coincidencias en la tabla.
-                                </td>
+                                <td colSpan="7" className="text-center py-4 text-gray-500">No existen reportes por el momento.</td>
                             </tr>
                         ) : (
 

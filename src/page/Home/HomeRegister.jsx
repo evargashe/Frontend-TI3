@@ -91,7 +91,7 @@ function RegistroForm() {
 
         try {
             // Realizar la solicitud al servidor usando Axios
-            const response = await axios.post('http://localhost:4000/api/students/', formData);
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/`, formData);
 
             // Verificar la respuesta del servidor
             if (response.status === 200) {

@@ -22,7 +22,7 @@ const VerLibros = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/admin/get/books");
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/books`);
                 setLibros(response.data);
             } catch (error) {
                 console.error('Error al obtener los libros:', error);
@@ -71,7 +71,7 @@ const VerLibros = () => {
 
 
     const handleEditFormSave = (updatedFormData) => {
-        axios.put(`http://localhost:4000/api/admin/update/books/${selectedBookId}`, updatedFormData)
+        axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update/books/${selectedBookId}`, updatedFormData)
             .then((response) => {
                 const updatedLibros = libros.map(book => (book._id === selectedBookId ? response.data : book));
                 setLibros(updatedLibros);
@@ -99,7 +99,7 @@ const VerLibros = () => {
 
         if (confirmAction.isConfirmed) {
 
-            axios.delete(`http://localhost:4000/api/admin/delete/books/${itemId}`)
+            axios.delete(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/delete/books/${itemId}`)
                 .then((response) => {
                     const updatedLibros = libros.filter(book => book._id !== itemId);
                     toast.success("¡Libro eliminado con éxito!", {

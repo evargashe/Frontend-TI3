@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 import HeaderAdmin from '../component/Admin/Header'
 import Home from '../page/Admin/Home';
@@ -10,8 +10,13 @@ import AgregarEquipos from '../page/Admin/HomeAgregarEquipos';
 import Reportes from '../page/Admin/HomeReportes';
 import VerEquipos from '../page/Admin/HomeVerEquipos';
 import CrearAdmin from '../page/Admin/HomeCrearAdmin';
-
 function adminRoutes() {
+  /* const token = localStorage.getItem('tokenAdmin') //const token = Cookies.get('token');
+
+  if (!token) {
+    // Si no hay token, redirige a la página de inicio de sesión
+    return <Navigate to="/admin/login" />;
+  } */
   return (
     <div>
       <HeaderAdmin />

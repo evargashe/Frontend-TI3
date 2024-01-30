@@ -32,10 +32,10 @@ const VerEquipos = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/students/accepted-reservations/equipments');
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/accepted-reservations/equipments`);
 
                 const formattedData = await Promise.all(response.data.map(async (event) => {
-                    const equipmentDetailsResponse = await axios.get(`http://localhost:4000/api/students/getDetailsItem/equipments/${event.equipmentId}`);
+                    const equipmentDetailsResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/getDetailsItem/equipments/${event.equipmentId}`);
                     const equipmentDetails = equipmentDetailsResponse.data;
 
                     const startMoment = moment(event.reservationDateTime);

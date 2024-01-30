@@ -1,6 +1,6 @@
 const obtenerUserIdDesdeServidor = async (token) => {
     try {
-        const response = await fetch('http://localhost:4000/api/students/get-user-id', {
+        const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/get-user-id`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

@@ -48,7 +48,7 @@ function ResetPasswordPage() {
         }
         // Enviar solicitud al backend para cambiar la contraseña
         try {
-            const response = await axios.post('http://localhost:4000/api/admin/update-password', {
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/update-password`, {
                 email: emailParam, // Reemplaza con el email correspondiente
                 newPassword: password, // Estoy asumiendo que deseas cambiar la contraseña a la que ingresaste en el formulario
                 token: token

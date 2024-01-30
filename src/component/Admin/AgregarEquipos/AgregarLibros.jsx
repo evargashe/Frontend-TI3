@@ -21,7 +21,7 @@ const AgregarLibros = () => {
         // Realiza la solicitud al backend para obtener las categorías de libros
         const fetchCategoriasLibros = async () => {
             try {
-                const response = await fetch("http://localhost:4000/api/admin/getCategory");
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getCategory`);
                 const data = await response.json();
                 setCategoriasLibros(data);
             } catch (error) {
@@ -71,7 +71,7 @@ const AgregarLibros = () => {
             });
         } else {
             try {
-                const response = await axios.post("http://localhost:4000/api/admin/create/books", formulario);
+                const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/create/books`, formulario);
 
                 toast.success("¡Libro agregado con éxito!", {
                     position: toast.POSITION.BOTTOM_RIGHT,

@@ -20,8 +20,8 @@ function Perfil() {
     useEffect(() => {
         const fetchUserHistory = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/students/user-history-by-id/${userId}`);
-                const responseUser = await axios.get(`http://localhost:4000/api/students/getStudentById/${userId}`);
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/user-history-by-id/${userId}`);
+                const responseUser = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/getStudentById/${userId}`);
 
                 const receivedData = response.data;
 
@@ -48,7 +48,7 @@ function Perfil() {
     useEffect(() => {
         const fetchItemDetails = async (itemId, itemType) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/students/get-item-by-id/${itemType}/${itemId}`);
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/get-item-by-id/${itemType}/${itemId}`);
                 setItemDetails((prevDetails) => ({
                     ...prevDetails,
                     [itemId]: response.data,
@@ -80,26 +80,8 @@ function Perfil() {
         return /^\d{8}$/.test(cui);
     };
 
-    const areRequiredFieldsFilled = () => {
-        const requiredFields = ['firstname', 'lastname', 'telephone', 'CUI'];
-        return requiredFields.every(field => userData[field].trim() !== '');
-    };
-
     const handleUpdate = async (e) => {
         e.preventDefault(); // Evitar que el formulario se envíe automáticamente
-
-        if (!areRequiredFieldsFilled()) {
-            toast.error('Todos los campos son obligatorios. Por favor, complete todos los campos.', {
-                position: toast.POSITION.BOTTOM_RIGHT,
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            return;
-        }
 
         if (!isPhoneNumberValid(userData.telephone)) {
             toast.error('El número de teléfono debe tener 9 dígitos.', {
@@ -127,7 +109,7 @@ function Perfil() {
             return;
         }
         try {
-            const response = await axios.put(`http://localhost:4000/api/students/update-student-by-id/${userId}`, userData);
+            const response = await axios.put(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/update-student-by-id/${userId}`, userData);
             toast.success('Datos actualizados correctamente', {
                 position: toast.POSITION.BOTTOM_RIGHT,
                 autoClose: 1000,
@@ -146,28 +128,23 @@ function Perfil() {
 
     const handleEdit = () => {
         setIsEditing(true); // Cambiar al modo de edición al hacer clic en "Editar" 
-        setOriginalUserData({ ...userData }); // Almacena una copia del estado original
+        setOriginalUserData({ [fieldBeingEdited]: userData[fieldBeingEdited] });
     };
 
     const handleCancel = () => {
         setIsEditing(false); // Cancelar la edición y volver al modo de visualización
-        setUserData({ ...originalUserData }); // Restaura el estado original
+        setUserData({ ...userData, [fieldBeingEdited]: originalUserData[fieldBeingEdited] });
     };
 
     const toggleView = () => {
         setShowHistorial((prevShowHistorial) => !prevShowHistorial); // Cambia el estado para alternar entre historial y detalles de cuenta
     };
 
-    const handleReservasClick = () => {
-        toggleView();
-    };
-
-
     const [reservas, setReservas] = useState([]);
     const fetchData = async () => {
         try {
-            const responseBook = await axios.get("http://localhost:4000/api/admin/getReservation/books");
-            const responseEquipment = await axios.get("http://localhost:4000/api/admin/getReservation/equipments");
+            const responseBook = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/books`);
+            const responseEquipment = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getReservation/equipments`);
             const combinedReservas = [...responseBook.data, ...responseEquipment.data];
             // Ordenar por la propiedad 'createdAt' 
             combinedReservas.sort((a, b) => {
@@ -186,7 +163,7 @@ function Perfil() {
             });
             const reservasWithNames = await Promise.all(combinedReservas.map(async (item) => {
                 const correctedType = item.type === 'book' ? 'books' : 'equipments';
-                const categoryResponse = await axios.get(`http://localhost:4000/api/admin/get/${correctedType}/${item.type === 'book' ? item.bookId : item.equipmentId}`);
+                const categoryResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/get/${correctedType}/${item.type === 'book' ? item.bookId : item.equipmentId}`);
                 const categoryName = item.type === 'book' ? categoryResponse.data.title : categoryResponse.data.name;
                 return { ...item, categoryName };
             }));

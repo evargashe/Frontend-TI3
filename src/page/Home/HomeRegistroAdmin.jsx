@@ -36,7 +36,7 @@ function RegistroAdmin() {
         const checkAdminData = async () => {
             try {
                 // Verificar si el correo ya está registrado
-                const response = await axios.get(`http://localhost:4000/api/admin/getAdminData/${formData.email}`);
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/getAdminData/${formData.email}`);
                 const adminData = response.data;
                 // Si el correo ya está registrado, redirigir a la página de inicio de sesión con un mensaje
                 toast.info('Ya estás registrado como administrador. Por favor, inicia sesión.');
@@ -107,7 +107,7 @@ function RegistroAdmin() {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:4000/api/admin/registrar-admin', { firstname, lastname, email, telephone, password });
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/admin/registrar-admin`, { firstname, lastname, email, telephone, password });
 
             console.log(response.data);
             toast.success('Administrador registrado correctamente. Ya puedes iniciar sesion como administrador', {

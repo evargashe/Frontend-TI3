@@ -22,7 +22,6 @@ function HistorialUsuarioTable({ userHistory, itemDetails, currentData, pageCoun
     const [showReportes, setShowReportes] = useState(true); // State to toggle between reportes and reservas
     const itemsPerPage = 5; // Número de elementos por página
     const [localUserHistory, setLocalUserHistory] = useState(userHistory);
-    const [localCurrentData, setLocalCurrentData] = useState(currentData);
 
 
     useEffect(() => {
@@ -30,12 +29,7 @@ function HistorialUsuarioTable({ userHistory, itemDetails, currentData, pageCoun
         setLocalUserHistory(userHistory);
     }, [userHistory]);
 
-    useEffect(() => {
-        // Actualiza los datos locales cuando `currentData` cambia
-        setLocalCurrentData(currentData);
-    }, [currentData]);
 
-    
     const handlePageClick = ({ selected }) => {
         setCurrentPage(selected);
     };
@@ -171,9 +165,9 @@ function HistorialUsuarioTable({ userHistory, itemDetails, currentData, pageCoun
                         </thead>
                         {/* Cuerpo de la tabla */}
                         <tbody>
-                            {currentData.filter(item => item.state == 'ACEPTADO').length === 0 ? (
+                            {currentData.length === 0 ? (
                                 <tr>
-                                    <td colSpan="7" className="text-center py-4 text-gray-500">No existen reservas por el momento.</td>
+                                    <td colSpan="5" className="text-center py-4 text-gray-500">No existen reservas por el momento.</td>
                                 </tr>
                             ) : (
                                 currentData.map((item, index) => (

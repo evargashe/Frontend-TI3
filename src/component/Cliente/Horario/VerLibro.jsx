@@ -32,11 +32,11 @@ const VerLibros = () => {
         const fetchEvents = async () => {
             try {
                 // Llamar al endpoint para obtener reservas aceptadas
-                const response = await axios.get('http://localhost:4000/api/students/accepted-reservations/books');
+                const response = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/accepted-reservations/books`);
 
                 const formattedData = await Promise.all(response.data.map(async (event) => {
                     // Obtener detalles del libro utilizando el nuevo endpoint
-                    const bookDetailsResponse = await axios.get(`http://localhost:4000/api/students/getDetailsItem/books/${event.bookId}`);
+                    const bookDetailsResponse = await axios.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/getDetailsItem/books/${event.bookId}`);
                     const bookDetails = bookDetailsResponse.data;
 
                     const startMoment = moment(event.reservationDate);

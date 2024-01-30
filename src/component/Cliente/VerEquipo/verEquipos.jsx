@@ -13,7 +13,7 @@ const EquiposTable = () => {
     useEffect(() => {
         const fetchEquipos = async () => {
             try {
-                const response = await fetch("http://localhost:4000/api/students/view-equipments/equipments");
+                const response = await fetch(`${import.meta.env.VITE_REACT_APP_API_KEY}/api/students/view-equipments/equipments`);
                 const data = await response.json();
                 setEquipos(data);
             } catch (error) {
