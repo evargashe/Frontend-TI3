@@ -1,7 +1,6 @@
 import React from 'react';
 import Logo from '../../assets/ESCUELA-TELECOMUNICACIONES-UNSA-878x426.jpg'
 import { Link } from 'react-router-dom';
-import Calendar from '@vscode/codicons/src/icons/Calendar.svg';
 import OverTime from '@tabler/icons/calendar-repeat.svg';
 import MultipleSmarphones from '@tabler/icons/file-report.svg'
 import styles from './styles/Home.module.css';
