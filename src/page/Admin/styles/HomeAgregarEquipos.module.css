@@ -1,0 +1,21 @@
+.logo {
+    width: 70px;
+    height: 70px;
+}
+
+.infoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vh;
+    text-align: center;
+}
+
+.card {
+    width: 650px; 
+    height: 650px;
+}
+
+.hero {
+    margin-top: -45px;
+}
+

@@ -1,0 +1,33 @@
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+.card {
+    width: 600px;
+    height: 570px;
+}
+
+.blueText {
+    color: blue;
+    font-size: 1.0rem;
+}
+
+.centerText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.hero {
+    margin-bottom: -72px;
+}
+
+
+.button {
+    background-color: blue;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}

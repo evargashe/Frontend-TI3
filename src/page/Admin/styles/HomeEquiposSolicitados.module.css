@@ -1,0 +1,15 @@
+/* Agrega estas clases a tu archivo de estilos CSS */
+.bg-pendiente {
+    color: blue;
+    /* Color celeste para PENDIENTE */
+}
+
+.bg-rechazado {
+    color: red;
+    /* Color rojo para RECHAZADO */
+}
+
+.bg-aceptado {
+    color: green;
+    /* Color verde para ACEPTADO */
+}

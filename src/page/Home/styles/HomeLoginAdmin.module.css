@@ -1,0 +1,43 @@
+.blackBackground {
+    background-color:darkcyan;
+}
+
+.hero {
+    min-height: 100vh;
+}
+
+.card {
+    width: 600px;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+}
+
+.blueText {
+    color: blue;
+    font-size: 1.0rem;
+}
+
+.centerText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.heroContent {
+    flex-direction: column;
+}
+
+.formControl {
+    margin-bottom: 1rem;
+}
+
+.button {
+    background-color: black;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}

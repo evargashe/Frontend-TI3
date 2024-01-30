@@ -1,0 +1,60 @@
+{
+    "Equipos": {
+        "0": {
+            "Nombre": "Firmware EV3 Mindstorms (LEGO)",
+            "Foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Lego_Mindstorms_EV3_Robot.jpg/800px-Lego_Mindstorms_EV3_Robot.jpg"
+        },
+        "1": {
+            "Nombre": "Dabot Magician (Brazo robotico)",
+            "Foto": "https://tiendakrear3d.com/wp-content/uploads/2020/09/dobot-magician.webp"
+        },
+        "2": {
+            "Nombre": "Arduino Explore IoT Kit",
+            "Foto": "https://www.techmaker.it/1465-small_default/arduino-explore-iot-kit.jpg"
+        },
+        "3": {
+            "Nombre": "NAO (Robot Humanoide)",
+            "Foto": "https://team.inria.fr/robotlearn/files/2016/12/DSC03566.jpg"
+        },
+        "4": {
+            "Nombre": "Lego Mindstorms Kit",
+            "Foto": "https://www.ubuy.pe/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNzFEb2ozdUlrdUwuX0FDX1NMMTUwMF8uanBn.jpg"
+        },
+        "5": {
+            "Nombre": "Robotis Premium (Bioloid premium)",
+            "Foto": "https://www.robotstore.it/open2b/var/products/4/46/0-b9310971-300-Robotis-Bioloid-Premium-Kit.jpg"
+        },
+        "6": {
+            "Nombre": "Escaner 3D",
+            "Foto": "https://plazavea.vteximg.com.br/arquivos/ids/27194446-512-512/null.jpg"
+        },
+        "7": {
+            "Nombre": "DJI Mave Air Fly more combo(Drone)",
+            "Foto": "https://m.media-amazon.com/images/I/61em4zYJHoL.jpg"
+        },
+        "8": {
+            "Nombre": "Embrace 2 - Embrace Smartband",
+            "Foto": "https://www.empatica.com/assets/images/embrace/ro_em2_sg_front_left-lg-hdpi.png"
+        },
+        "9": {
+            "Nombre": "Escaner 3D",
+            "Foto": "https://static.wixstatic.com/media/453102_3e7a904ee6804e5b9cf4826ee795ee74~mv2.jpg/v1/fill/w_534,h_534,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/453102_3e7a904ee6804e5b9cf4826ee795ee74~mv2.jpg"
+        },
+        "10": {
+            "Nombre": "Oculus Quest 2 (Gafas de realidad virtual)",
+            "Foto": "https://www.shiftdigital.com.ar/images/Oculus%20Lentes%20realidad%20Virtual%20Quest%202%20128Gb%203.jpg"
+        },
+        "11": {
+            "Nombre": "E4 Wrisband Empatica (Sensor Fisiologico)",
+            "Foto": "https://img.medicalexpo.es/images_me/photo-g/114383-17835774.jpg"
+        },
+        "12": {
+            "Nombre": "Optronics Kit",
+            "Foto": "https://fibremex.com/fibra-optica/public/images/img_spl/productos/OPHEKPRFEMP/1.jpg"
+        },
+        "13": {
+            "Nombre": "HT- K3032 Fiber Optic Tool Ki",
+            "Foto": "https://media.cablematic.com/__sized__/images_1000/tk02100-01-thumbnail-255x255-70.jpg"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.infoContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vh;
+    text-align: center;
+}
+
+.card {
+    width: 400px;
+}
+
+.form_checkbox:checked {
+    border-color: #4299e1;
+    background-color: #4299e1;
+}

@@ -1,0 +1,28 @@
+.imageStyles {
+    width: 1500px;
+    height: 500px;
+}
+
+.containerStyles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoContainerStyles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 15vh;
+    text-align: center;
+}
+
+.styleInfo {
+    width: 150px;
+    height: 150px;
+}
+
+.styleImg {
+    width: 150px;
+    height: 150px;
+}
